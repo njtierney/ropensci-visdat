@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1502376078740.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1963292055",
+    "id" : "43170220",
+    "lastKnownWriteTime" : 1502378195,
+    "last_content_update" : 1502378195284,
+    "path" : "~/github/njtierney/ropensci-visdat/nick-ropensci-visdat.Rmd",
+    "project_path" : "nick-ropensci-visdat.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "5,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
