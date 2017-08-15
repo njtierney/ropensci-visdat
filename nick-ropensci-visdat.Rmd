@@ -43,11 +43,22 @@ Onboarding a package onto rOpenSci is an open peer review of an R package. If su
 
 **What's in it for the author?**
 
-You get feedback on your package, maintain ownership, get support from rOpenSci members, potentially get a publication, publicity from it being under rOpenSci, and get to contribute something to rOpenSci.
+* Feedback on your package
+* Support from rOpenSci members
+* Maintain ownership of your package
+* Publicity from it being under rOpenSci
+* Contribute something to rOpenSci
+* Potentially a publication
 
-**How is this different to CRAN?**
+**What can rOpenSci do that CRAN cannot?**
 
-The rOpenSci onboarding process provides a stamp of quality on a package that you do not necessarily get when a package is on CRAN. ~CRAN is a great repository for holding and checking R packages, and the CRAN team does an amazing job of this. Certainly, without CRAN R simply would not be the language that it is today.~ However, CRAN can only do so much. It cannot, for example, assess the readability of all of the documentation, or that the code is well written, or if one package is overlapping with another. These tasks require human hours, and there just isn't enough spare time and energy amongst CRAN managers.
+The rOpenSci onboarding process provides a stamp of quality on a package that you do not necessarily get when a package is on CRAN [^3]. Here's what rOpenSci does that CRAN cannot:
+
+- Assess documentation readability / usability
+- Provide a code review to find weak points / points of improvement
+- Determine whether a package is overlaping with another. 
+
+[^3]: CRAN is an essential part of what makes the r-project successful and certainly without CRAN R simply would not be the language that it is today. The tasks provided by the rOpenSci onboarding require human hours, and there just isn't enough spare time and energy amongst CRAN managers.
 
 So I submitted visdat to the onboarding process. For me, I did this for three reasons.
 
@@ -55,13 +66,11 @@ So I submitted visdat to the onboarding process. For me, I did this for three re
 2. Pending acceptance, I would get a publication in JOSS
 3. I get to contribute back to rOpenSci
 
-Submitting the package was actually quite easy - you go to [submit an issue](https://github.com/ropensci/onboarding/issues/new) on the onboarding page on GitHub, and it provides a magical template for you to fill out. 
+Submitting the package was actually quite easy - you go to [submit an issue](https://github.com/ropensci/onboarding/issues/new) on the onboarding page on GitHub, and it provides a magical template for you to fill out [^1], with no submission gotchas - this could be the future [^2]. Within 2 days of submitting the issue, I had a response from the editor, [Noam Ross](https://github.com/noamross), and two reviewers assigned, [Mara Averick](https://github.com/batpigandme), and [Sean Hughes](https://github.com/seaaan).
 
-Never used GitHub? Don't worry, creating account is easy, and the template is all there for you. You provide very straightforward information, and it's all there at once. Not like other journal submission processes, where you aren't always entirely clear what information you need ahead of time - gotchas like "what is the residential address of every co-author", or getting everyone to sign a copyright notice. All gone. This could be the future.
+[^1]: Never used GitHub? Don't worry, creating account is easy, and the template is all there for you. You provide very straightforward information, and it's all there at once. 
 
-Within 2 days of submitting the issue, I had a response from the editor, Noam Ross, and two reviewers assigned, Sean Huges, and Mara Averick.
-
-Some really nice bonuses were that, even at the first step, rOpenSci wants to make your package better, and start by running the [goodpractice](https://github.com/MangoTheCat/goodpractice) package to run automated checks and tell you things from "have you included tests" to "you have exceeded the line length of 80 characters". Noam even suggested that I use some visualisation testing software [`vdiffr`](https://github.com/lionel-/vdiffr) to test the visualisations in visdat. I'd been looking for an excuse to test it out, and got visdat over 90% code coverage. So before the review, visdat is now in better shape. 
+[^2]: With some journals, the submission process means you aren't always clear what information you need ahead of time. Gotchas include things like "what is the residential address of every co-author", or getting everyone to sign a copyright notice.
 
 I submitted **visdat** and waited, somewhat apprehensively. _What would the reviewers think?_
 
@@ -69,27 +78,52 @@ I submitted **visdat** and waited, somewhat apprehensively. _What would the revi
 
 # Getting Feedback
 
-I received prompt replies from the reviewers, and I got to hear really nice things like  "I think `visdat` is a very worthwhile project and have already started using it in my own work.", and "Having now put it to use in a few of my own projects, I can confidently say that it is an incredibly useful early step in the data analysis workflow. `vis_miss()`, in particular, is helpful for scoping the task at hand ...".
+### Unexpected extras from the review
 
-There was also some great critical feedback from Sean and Mara. 
+Even before the review started officially, I got some great feedback from Noam Ross, the editor for the visdat submission:
 
-A common thread in both reviews was that the way I initially had visdat set up was to have the first row of the dataset at the bottom left, and the variable names at the bottom. However, this doesn't reflect what a dataframe typically looks like - with the names of the variables at the top, and the first row also at the top. 
+- The [goodpractice](https://github.com/MangoTheCat/goodpractice) package revealed ... improved tests, no line lengths less than 80.
+- A suggestion to use visualisation testing software [`vdiffr`](https://github.com/lionel-/vdiffr) to test the visualisations in visdat. 
 
-<old plot> | <current plot>
+I'd been looking for an excuse to test it out, and got visdat over 90% code coverage. So before the review, visdat is now in better shape. 
 
-There was also suggestions to add the percentage of missing data in each column.
+### The feedback from reviewers
 
-<old plot> | <current plot>
+I received prompt replies from the reviewers, and I got to hear really nice things like  "I think `visdat` is a very worthwhile project and have already started using it in my own work.", and "Having now put it to use in a few of my own projects, I can confidently say that it is an incredibly useful early step in the data analysis workflow. `vis_miss()`, in particular, is helpful for scoping the task at hand ...". In addition to these nice things, there was also great critical feedback from Sean and Mara. 
+
+A common thread in both reviews was that the way I initially had visdat set up was to have the first row of the dataset at the bottom left, and the variable names at the bottom. However, this doesn't reflect what a dataframe typically looks like - with the names of the variables at the top, and the first row also at the top. There was also suggestions to add the percentage of missing data in each column.
+
+```{r vis-dat-compare, out.width = "50%", echo = FALSE, message = FALSE}
+library(visdat)
+
+suppressMessages({
+vis_dat(airquality) + 
+    ggplot2::scale_x_discrete(position = "bottom") + 
+    ggplot2::scale_y_reverse()
+})
+vis_dat(airquality)
+  
+vis_miss(airquality, show_perc_col = FALSE) + 
+  ggplot2::scale_x_discrete(position = "bottom") + 
+    ggplot2::scale_y_reverse()
+
+vis_miss(airquality)
+
+```
+
+_On the left are the old visdat and vismiss plots, and on the right are the new visdat and vismiss plots._
+
+Changing this makes the plots make a lot more sense, and read better.
 
 Mara made me aware of the warning and error messages that I had let crop up in the package. This was something I had grown to accept - the plot worked, right? But Mara pointed out that from a user perspective, seeing these warnings and messages can be a negative experience for the user, and something that might stop them from using it - how do they know if their plot is accurate with all these warnings? Are they using it wrong?
 
-Sean gave some really great practical advice on how to reduce duplication in my code, explaining how I could write a general construction method to prepare the data for the plots, and even about some of how to write some C++ code to improve the speed of an experimental function, `vis_guess`.
+Sean gave practical advice on reducing code duplication, explaining how to write general construction method to prepare the data for the plots. Sean also explained how to write C++ code to improve the speed of `vis_guess()`.
 
 From both reviewers I got nitty gritty feedback about my writing - places where documentation that was just a bunch of notes I made, or where I had reversed the order of a statement.
 
 # What did I think?
 
-I think that getting feedback in general on your own work can be a bit hard to take sometimes. We get attached to our ideas, we've seen them grow from little thought bubbles all the way to all growed up R packages. I was apprehensive about getting feedback on `visdat`. But, as Tina Turner put it, the feedback process was ["simply the best"](https://www.youtube.com/watch?v=mNU3aIJs88g). 
+I think that getting feedback in general on your own work can be a bit hard to take sometimes. We get attached to our ideas, we've seen them grow from little thought bubbles all the way to "all growed up" R packages. I was apprehensive about getting feedback on `visdat`. But, as Tina Turner put it, the feedback process was ["simply the best"](https://www.youtube.com/watch?v=mNU3aIJs88g). 
 
 Boiling down the onboarding review process down to a few key points, I would say it is **transparent**, **friendly**, and **thorough**. 
 
