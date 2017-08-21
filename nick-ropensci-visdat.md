@@ -1,4 +1,4 @@
-# visdat and the onboarding party
+# Onboarding `visdat` a tool for preliminary visualisation of whole dataframes
 
 
 
@@ -11,7 +11,7 @@ It is also ambiguous. Does it mean to do some exporatory modelling? Or make some
 
 Starting down either path, you often encounter the non-trivial growing pains of working with a new dataset. The mix ups of data types - height in cm coded as a factor, categories are numerics with decimals, strings are datetimes, and somehow datetime is one long number. And let's not forget everyone's favourite: missing data.
 
-These growing pains often get in the way of your basic modelling or graphical exploration. So, sometimes you can't even start to look at the data, and that is frustrating.
+These growing pains often get in the way of your basic modelling or graphical exploration. So, sometimes you can't even start to take a look at the data, and that is frustrating.
 
 The [`visdat`](https://github.com/ropensci/visdat) package aims to make this preliminary part of analysis easier. It focusses on creating visualisations of whole dataframes, to make it easy and fun for you to "get a look at the data".
 
@@ -94,13 +94,13 @@ From both reviewers I got nitty gritty feedback about my writing - places where 
 
 # What did I think?
 
-I think that getting feedback in general on your own work can be a bit hard to take sometimes. We get attached to our ideas, we've seen them grow from little thought bubbles all the way to "all growed up" R packages. I was apprehensive about getting feedback on `visdat`. But, as Tina Turner put it, the feedback process was ["simply the best"](https://www.youtube.com/watch?v=mNU3aIJs88g). 
+I think that getting feedback in general on your own work can be a bit hard to take sometimes. We get attached to our ideas, we've seen them grow from little thought bubbles all the way to "all growed up" R packages. I was apprehensive about getting feedback on `visdat`. But the feedback process from rOpenSci was, as Tina Turner put it, ["simply the best"](https://www.youtube.com/watch?v=mNU3aIJs88g). 
 
 Boiling down the onboarding review process down to a few key points, I would say it is **transparent**, **friendly**, and **thorough**. 
 
-Having the entire review process on github means that everyone is accountable for what they say, and means that you can track exactly what everyone said about it _in one place_. No email chain hell with (mis)attached documents, accidental reply-alls or single replies. The whole internet is cc'd in on this discussion.
+Having the entire review process on GitHub means that everyone is accountable for what they say, and means that you can track exactly what everyone said about it _in one place_. No email chain hell with (mis)attached documents, accidental reply-alls or single replies. The whole internet is cc'd in on this discussion.
 
-Being an rOpenSci initiative, the process is incredibly **friendly** and respectful of everyone involved. Comments are positive and upbeat, but are also, importantly **thorough**, providing constructive feedback.
+Being an rOpenSci initiative, the process is incredibly **friendly** and respectful of everyone involved. Comments are upbeat, but are also, importantly **thorough**, providing constructive feedback.
 
 # So what does `visdat` look like?
 
@@ -128,4 +128,11 @@ This shows only missing and present information in the data. In addition to `vis
 
 # The Future of visdat
 
-There are some really exciting changes coming up for visdat. The first is making a plotly version of all of the figures that provides useful tooltips and interactivity. The second and third changes to bring in later down the track are to include the idea of visualising expectations, where the user can search their data for particular things, such as particular characters like "~" or values like -99, or -0, or conditions "x > 101", and visualise them. Another final idea is to make it easy to visually compare two dataframes of differing size. Finally, we want to work on of the final idea is to provide consistent palletes for particular datatypes. For example, character, numerics, integers, and datetime would all have different (and consistently different) colours.
+There are some really exciting changes coming up for visdat. The first is making a plotly version of all of the figures that provides useful tooltips and interactivity. The second and third changes to bring in later down the track are to include the idea of visualising expectations, where the user can search their data for particular things, such as particular characters like "~" or values like -99, or -0, or conditions "x > 101", and visualise them. Another final idea is to make it easy to visually compare two dataframes of differing size. Finally, we want to work on of the final idea is to provide consistent palettes for particular datatypes. For example, character, numerics, integers, and datetime would all have different (and consistently different) colours.
+
+I am very interested to hear how people use visdat in their work, so if you have suggestions or feedback I would love to hear from you! The best way to leave feedback is by [filing an issue](), or perhaps sending me an email at nicholas [dot] tierney [at] gmail [dot] com.
+
+# The future of your R package?
+
+If you have an R package you should give some serious thought about submitting it to the rOpenSci through their onboarding process. There are very clear guidelines on their [onboarding github page](https://github.com/ropensci/onboarding). If you aren't sure about [package fit](https://github.com/ropensci/onboarding/blob/master/policies.md), you can submit a [pre-submission enquiry](https://github.com/ropensci/onboarding/issues?q=is%3Aissue+label%3A0%2Fpresubmission) - the editors are nice and friendly, and a positive experience awaits you!
+
