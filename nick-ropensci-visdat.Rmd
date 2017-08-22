@@ -1,5 +1,5 @@
 ---
-title: "Onboarding `visdat` a tool for preliminary visualisation of whole dataframes"
+title: "Onboarding `visdat`, a tool for preliminary visualisation of whole dataframes"
 output: 
   html_document: 
     keep_md: yes
@@ -15,18 +15,17 @@ knitr::opts_chunk$set(
 
 ```
 
-
 > Take a look at the data
 
 This is a phrase that comes up when you first get a dataset. 
 
-It is also ambiguous. Does it mean to do some exporatory modelling? Or make some histograms, scatterplots, and boxplots? Is it both?
+It is also ambiguous. Does it mean to do some exploratory modelling? Or make some histograms, scatterplots, and boxplots? Is it both?
 
 Starting down either path, you often encounter the non-trivial growing pains of working with a new dataset. The mix ups of data types - height in cm coded as a factor, categories are numerics with decimals, strings are datetimes, and somehow datetime is one long number. And let's not forget everyone's favourite: missing data.
 
 These growing pains often get in the way of your basic modelling or graphical exploration. So, sometimes you can't even start to take a look at the data, and that is frustrating.
 
-The [`visdat`](https://github.com/ropensci/visdat) package aims to make this preliminary part of analysis easier. It focusses on creating visualisations of whole dataframes, to make it easy and fun for you to "get a look at the data".
+The [`visdat`](https://github.com/ropensci/visdat) package aims to make this preliminary part of analysis easier. It focuses on creating visualisations of whole dataframes, to make it easy and fun for you to "get a look at the data".
 
 Making `visdat` was fun, and it was easy to use. But I couldn't help but think that maybe `visdat` could be more.
 
@@ -56,7 +55,7 @@ The rOpenSci onboarding process provides a stamp of quality on a package that yo
 
 - Assess documentation readability / usability
 - Provide a code review to find weak points / points of improvement
-- Determine whether a package is overlaping with another. 
+- Determine whether a package is overlapping with another. 
 
 [^3]: CRAN is an essential part of what makes the r-project successful and certainly without CRAN R simply would not be the language that it is today. The tasks provided by the rOpenSci onboarding require human hours, and there just isn't enough spare time and energy amongst CRAN managers.
 
@@ -68,7 +67,7 @@ So I submitted visdat to the onboarding process. For me, I did this for three re
 
 Submitting the package was actually quite easy - you go to [submit an issue](https://github.com/ropensci/onboarding/issues/new) on the onboarding page on GitHub, and it provides a magical template for you to fill out [^1], with no submission gotchas - this could be the future [^2]. Within 2 days of submitting the issue, I had a response from the editor, [Noam Ross](https://github.com/noamross), and two reviewers assigned, [Mara Averick](https://github.com/batpigandme), and [Sean Hughes](https://github.com/seaaan).
 
-[^1]: Never used GitHub? Don't worry, creating account is easy, and the template is all there for you. You provide very straightforward information, and it's all there at once. 
+[^1]: Never used GitHub? Don't worry, creating an account is easy, and the template is all there for you. You provide very straightforward information, and it's all there at once. 
 
 [^2]: With some journals, the submission process means you aren't always clear what information you need ahead of time. Gotchas include things like "what is the residential address of every co-author", or getting everyone to sign a copyright notice.
 
@@ -76,16 +75,19 @@ I submitted **visdat** and waited, somewhat apprehensively. _What would the revi
 
 > **insert/link to Mara's post here?**
 
-# Getting Feedback
+# Getting feedback
 
 ### Unexpected extras from the review
 
-Even before the review started officially, I got some great feedback from Noam Ross, the editor for the visdat submission:
+Even before the review started officially, I got some great concrete feedback from Noam Ross, the editor for the visdat submission.
 
-- The [goodpractice](https://github.com/MangoTheCat/goodpractice) package revealed ... improved tests, no line lengths less than 80.
-- A suggestion to use visualisation testing software [`vdiffr`](https://github.com/lionel-/vdiffr) to test the visualisations in visdat. 
+- Noam used the [goodpractice](https://github.com/MangoTheCat/goodpractice) package, to identify bad code patterns and other places to immediately improve upon in a concrete way. This resulted in me:
+  - Fixing error prone code such as using `1:length(...)`, or `1:nrow(...)`
+  - Improving testing using the visualisation testing software [`vdiffr`](https://github.com/lionel-/vdiffr))
+  - Reducing long code lines to improve readability
+  - Defining global variables to avoid a NOTE ("no visible binding for global variable")
 
-I'd been looking for an excuse to test it out, and got visdat over 90% code coverage. So before the review, visdat is now in better shape. 
+So before the review even started, visdat is in better shape, with 99% test coverage, and clearance from `goodpractice`.
 
 ### The feedback from reviewers
 
@@ -150,13 +152,12 @@ vis_miss(airquality)
 
 This shows only missing and present information in the data. In addition to `vis_dat()` it shows the percentage of missing data for each variable and also the overall amount of missing data. `vis_miss()` will also indicate when a dataset has no missing data at all, or a very small percentage.
 
-# The Future of visdat
+# The future of visdat
 
-There are some really exciting changes coming up for visdat. The first is making a plotly version of all of the figures that provides useful tooltips and interactivity. The second and third changes to bring in later down the track are to include the idea of visualising expectations, where the user can search their data for particular things, such as particular characters like "~" or values like -99, or -0, or conditions "x > 101", and visualise them. Another final idea is to make it easy to visually compare two dataframes of differing size. Finally, we want to work on of the final idea is to provide consistent palettes for particular datatypes. For example, character, numerics, integers, and datetime would all have different (and consistently different) colours.
+There are some really exciting changes coming up for visdat. The first is making a plotly version of all of the figures that provides useful tooltips and interactivity. The second and third changes to bring in later down the track are to include the idea of visualising expectations, where the user can search their data for particular things, such as particular characters like "~" or values like -99, or -0, or conditions "x > 101", and visualise them. Another final idea is to make it easy to visually compare two dataframes of differing size. We also want to work on providing consistent palettes for particular datatypes. For example, character, numerics, integers, and datetime would all have different (and consistently different) colours.
 
-I am very interested to hear how people use visdat in their work, so if you have suggestions or feedback I would love to hear from you! The best way to leave feedback is by [filing an issue](), or perhaps sending me an email at nicholas [dot] tierney [at] gmail [dot] com.
+I am very interested to hear how people use visdat in their work, so if you have suggestions or feedback I would love to hear from you! The best way to leave feedback is by [filing an issue](https://github.com/ropensci/visdat/issues/new), or perhaps sending me an email at nicholas [dot] tierney [at] gmail [dot] com.
 
 # The future of your R package?
 
-If you have an R package you should give some serious thought about submitting it to the rOpenSci through their onboarding process. There are very clear guidelines on their [onboarding github page](https://github.com/ropensci/onboarding). If you aren't sure about [package fit](https://github.com/ropensci/onboarding/blob/master/policies.md), you can submit a [pre-submission enquiry](https://github.com/ropensci/onboarding/issues?q=is%3Aissue+label%3A0%2Fpresubmission) - the editors are nice and friendly, and a positive experience awaits you!
-
+If you have an R package you should give some serious thought about submitting it to the rOpenSci through their onboarding process. There are very clear guidelines on their [onboarding GitHub page](https://github.com/ropensci/onboarding). If you aren't sure about [package fit](https://github.com/ropensci/onboarding/blob/master/policies.md), you can submit a [pre-submission enquiry](https://github.com/ropensci/onboarding/issues?q=is%3Aissue+label%3A0%2Fpresubmission) - the editors are nice and friendly, and a positive experience awaits you!
